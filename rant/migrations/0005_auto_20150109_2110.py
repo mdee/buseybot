@@ -17,47 +17,47 @@ class Migration(migrations.Migration):
             {
                 'url': 'https://www.youtube.com/watch?v=OBBZN7g8W1E',
                 'desc': 'Busey & Keanu at a crime scene',
-                'tags': ['cop', 'police', 'crime', 'pointbreak', 'reeves']
+                'tags': ['cop', 'police', 'crime', 'pointbreak', 'reeves', 'keanu', 'patrick', 'swayze', 'point break']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=kqsN1smBIeE',
                 'desc': 'Busey shoots some militants who are shooting birds',
-                'tags': ['butt', 'bird', 'militant']
+                'tags': ['bird', 'militant', 'mcbain', 'bulletproof', 'butt', 'horn']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=9T2S8GHzxqc',
                 'desc': 'Busey jumps in on some coke-peddlers',
-                'tags': ['cocaine', 'gang', 'crime']
+                'tags': ['cocaine', 'gang', 'crime', 'mcbain', 'bulletproof', 'butt', 'horn']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=iQZZHrkBlEI',
                 'desc': 'Busey stands firm when the odds are slim',
-                'tags': ['gun', 'army', 'military', 'soldier']
+                'tags': ['gun', 'army', 'military', 'soldier', 'mcbain', 'bulletproof', 'butt', 'horn']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=I3nSLhYmS4A',
                 'desc': 'Busey is insane in a boat with camo on',
-                'tags': ['insane', 'kidnap', 'boat']
+                'tags': ['insane', 'kidnap', 'boat', 'crazy', 'wtf']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=GBlfJJ-zYgo',
                 'desc': 'Busey is crazy in a diner',
-                'tags': ['kitty', 'crazy']
+                'tags': ['kitty', 'crazy', 'insane', 'wtf']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=hGD3269B0Is',
                 'desc': 'Drake Sabitch',
-                'tags': ['blacksheep', 'army', 'farley', 'spade']
+                'tags': ['blacksheep', 'army', 'farley', 'spade', 'black sheep']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=F479SR4xeRA',
                 'desc': 'Busey shoots that lady by the tree',
-                'tags': ['love', 'lady', 'woman', 'gun']
+                'tags': ['love', 'lady', 'woman', 'gun', 'wtf']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=1tYwDHxg60g',
                 'desc': 'Busey and his secretary from "The Firm"',
-                'tags': ['desk', 'secretary', 'office']
+                'tags': ['desk', 'secretary', 'office', 'tom', 'cruise', 'the firm', 'thefirm', 'firm']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=2Ctsm2YRR1g',
@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
             {
                 'url': 'https://www.youtube.com/watch?v=PnSHQHXvaTU',
                 'desc': 'Busey is the bad guy in Lethal Weapon',
-                'tags': ['fight', 'gibson', 'lethalweapon']
+                'tags': ['fight', 'gibson', 'lethalweapon', 'mel', 'glover', 'danny', 'lethal weapon']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=nrZWG1RWIbQ',
@@ -77,7 +77,7 @@ class Migration(migrations.Migration):
             {
                 'url': 'https://www.youtube.com/watch?v=Xm_0VN2T2no',
                 'desc': 'Busey and a lighter in Lethal Weapon',
-                'tags': ['lethalweapon', 'fire', 'lighter', 'gibson']
+                'tags': ['lethalweapon', 'fire', 'lighter', 'gibson', 'mel', 'glover', 'danny', 'lethal weapon']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=xLUGdZXET7w',
@@ -87,7 +87,7 @@ class Migration(migrations.Migration):
             {
                 'url': 'https://www.youtube.com/watch?v=yEO7Eq6kGiY',
                 'desc': 'Busey is being driven by some crazy dude',
-                'tags': ['army', 'killer', 'insane', 'crazy']
+                'tags': ['army', 'killer', 'insane', 'crazy', 'wtf']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=01X_6koNqBk',
@@ -102,7 +102,7 @@ class Migration(migrations.Migration):
             {
                 'url': 'https://www.youtube.com/watch?v=DTcaAhol-lM',
                 'desc': 'Busey describes his perfect woman',
-                'tags': ['reeves', 'pointbreak', 'lady', 'woman', 'computer']
+                'tags': ['reeves', 'pointbreak', 'lady', 'woman', 'computer', 'reeves', 'keanu', 'patrick', 'swayze', 'point break']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=KgWTgXXm4JQ',
@@ -117,7 +117,7 @@ class Migration(migrations.Migration):
             {
                 'url': 'https://www.youtube.com/watch?v=o1Xdu2HqEtc',
                 'desc': 'Busey is Bulletproof',
-                'tags': ['cocaine', 'gun', 'butt']
+                'tags': ['cocaine', 'gun', 'butt', 'mcbain', 'bulletproof', 'butt', 'horn']
             }
         ]
         for c in clips:
