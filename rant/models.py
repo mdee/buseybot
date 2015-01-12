@@ -4,6 +4,7 @@ import re
 
 from django.db import models
 from picklefield import PickledObjectField
+from emoji import emojize
 
 
 class Clip(models.Model):
@@ -91,6 +92,7 @@ class BuseyBot(object):
             reply_clip = list(self.clips)[self.pick_random_number_in_range(limit=len(self.clips))]
         # Clip is chosen, next step is to decide between emoji or quotation response
         emoji_response = self.heads()
+        emoji_response = True
         if emoji_response:
             # Pick random emoji
             reply_text = ''
@@ -116,8 +118,11 @@ class BuseyBot(object):
             else:
                 reply_text = random.choice(quotations_that_fit).text
         # Alright, you've got a clip and a bit of text, time to send it off
-        full_reply = '{0} {1} RT @{2}: {3}'.format(reply_clip.url, reply_text, username.encode('ascii', 'ignore'), status_obj.text.encode('ascii', 'ignore'))
-        print full_reply.encode('ascii', 'ignore')
+        if emoji_response:
+            reply_text = emojize(reply_text)
+        full_reply = u'{0} {1} RT @{2}: {3}'.format(reply_clip.url, reply_text, username, status_obj.text)
+        print full_reply
+        # print full_reply.encode('ascii', 'ignore')
         # self.api_client.retweet(id=status_obj.id)
         self.api_client.update_status(full_reply, in_reply_to_status_id=status_obj.id)
         # Finally, save this as a reply
