@@ -40,6 +40,14 @@ class BuseyBot(object):
         self.TWEET_LEN = 138 # Doing 138 to leave a space b/w username + URL, & URL + accompanying text
         self.MAX_EMOJIS = 50
 
+    def get_emoji_list(self):
+        """"""
+        face_emoji = range(int('1F601', 16), int('1F64F', 16))
+        fire_emoji = int('1F525', 16)
+        face_emoji.append(fire_emoji)
+        more_face_emoji = range(int('1F600', 16), int('1F636', 16))
+        return face_emoji + more_face_emoji
+
     def heads(self):
         """"""
         return random.random() >= 0.5
@@ -84,25 +92,32 @@ class BuseyBot(object):
         # Clip is chosen, next step is to decide between emoji or quotation response
         emoji_response = self.heads()
         if emoji_response:
-            # Pick a number between 1 and self.MAX_EMOJI, that's the number of emoji you're going to use
-            emoji_count = self.pick_random_number_in_range(limit=(tweet_len - self.url_length), limit_inclusive=True)
-            # Now, pick random emoji
+            # Pick random emoji
             reply_text = ''
             emojis_list = list(self.emojis)
-            for i in range(emoji_count):
-                emoji = emojis_list[self.pick_random_number_in_range(limit=len(emojis_list))]
-                reply_text += ':{0}: '.format(emoji.word)
+            add_emojis = True
+            while add_emojis:
+                emoji = random.choice(emojis_list)
+                if len(reply_text) + len(emoji.word) + 4 > tweet_len:
+                    print 'Done adding emojis'
+                    add_emojis = False
+                else:
+                    reply_text += ':{0}: '.format(emoji.word)
         else:
             # Pick a random quotation to go along with the clip
-            quotation = list(self.quotations)[self.pick_random_number_in_range(limit=len(self.quotations))]
-            if self.url_length + len(quotation.text) > (tweet_len - 1): # -1 for the space between URL & reply text
+            all_quotes = list(self.quotations)
+            quotations_that_fit = filter(lambda q: len(q.text) < tweet_len, all_quotes)
+            if not quotations_that_fit:
+                # Take the shortest one and truncate it
+                sorted_quotations = sorted(all_quotes, key=lambda q: len(q.text))
+                quotation = sorted_quotations[0]
                 # The quotation is too long so truncate it
-                reply_text = quotation.text[:(tweet_len - self.url_length - 1)]
+                reply_text = quotation.text[:tweet_len]
             else:
-                reply_text = quotation.text
+                reply_text = random.choice(quotations_that_fit).text
         # Alright, you've got a clip and a bit of text, time to send it off
-        full_reply = '{0} {1} RT @{2}: {3}'.format(reply_clip.url, reply_text, username, status_obj.text)
-        print full_reply
+        full_reply = '{0} {1} RT @{2}: {3}'.format(reply_clip.url, reply_text, username.encode('ascii', 'ignore'), status_obj.text.encode('ascii', 'ignore'))
+        print full_reply.encode('ascii', 'ignore')
         # self.api_client.retweet(id=status_obj.id)
         self.api_client.update_status(full_reply, in_reply_to_status_id=status_obj.id)
         # Finally, save this as a reply
@@ -121,6 +136,8 @@ class BuseyBot(object):
         if not status:
             print 'Error! Couldn\'t find a tweet to reply to'
         else:
-            tweet_len = self.TWEET_LEN - len('RT @{0}: {1}'.format(status.user.screen_name, status.text.encode('ascii', 'ignore'))) + self.url_length
+            necessary_rt_length = len('RT @{0}: {1}'.format(status.user.screen_name, status.text.encode('ascii', 'ignore')))
+            tweet_len = self.TWEET_LEN - (necessary_rt_length + self.url_length)
+            print 'Necessary length is {0}, + {1} for URL leaves {2} space for reply'.format(necessary_rt_length, self.url_length, tweet_len)
             self.craft_reply(status, tweet_len)
 

@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
         Clip = apps.get_model('rant', 'Clip')
         clips = [
             {
-                'url': 'https://www.youtube.com/v/F73_nmanbVM?start=30&end=65&autoplay=1',
+                'url': 'https://www.youtube.com/watch?v=F73_nmanbVM',
                 'desc': 'Busey + hippies + dead chickens',
                 'tags': ['chicken', 'hippie', 'rabies', 'suppository', 'feather'],
             },
@@ -112,13 +112,74 @@ class Migration(migrations.Migration):
             {
                 'url': 'https://www.youtube.com/watch?v=5-aric34OeE',
                 'desc': 'Busey & Ice-T and food and white people',
-                'tags': ['hunt', 'ice-t', 'game', 'pig']
+                'tags': ['hunt', 'ice-t', 'game', 'pig', 'bulldog', 'dog', 'ice-t', 'ice t', 'cherry bomb']
             },
             {
                 'url': 'https://www.youtube.com/watch?v=o1Xdu2HqEtc',
                 'desc': 'Busey is Bulletproof',
                 'tags': ['cocaine', 'gun', 'butt', 'mcbain', 'bulletproof', 'butt', 'horn']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=ei2dYpiS-Us',
+                'desc': 'Busey talking on the phone',
+                'tags': ['scar', 'marshall', 'phone', 'boat', 'plane', 'skydive', 'parachute', 'electric', 'murder']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=WZppJUaR7_0',
+                'desc': 'Busey drops chris farley on the governonr',
+                'tags': ['chris farley', 'blacksheep', 'black sheep', 'sabitch', 'drake', 'farley']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=ZS0YWEC2IO8',
+                'desc': 'busey in the kitchen, eye of the tiger',
+                'tags': ['gun', 'eye of the tiger', 'eyeofthetiger', 'clean', 'bad feeling', 'vietnam']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=803cvniQ1t0',
+                'desc': 'Busey doesnt work on Elvis bday',
+                'tags': ['elvis', 'birthday', 'bday', 'work']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=uG8apsvGm80',
+                'desc': 'wat busey and a kid in wheelchair',
+                'tags': ['sport', 'yankee', 'indian', 'piss', 'corey haim', 'haim']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=5lpR5G2HVek',
+                'desc': 'busey is a gay cop',
+                'tags': ['gay', 'pussy', 'cop', 'detective', 'murder', 'investigation', 'homosexual', 'queer', 'leather']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=iQA4OUkELQI',
+                'desc': 'busey clown makeup',
+                'tags': ['liquor', 'drunk', 'clown', 'carny', 'mirror', 'makeup', 'make up']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=y9XSsTnUIMM',
+                'desc': 'busey tortures mel',
+                'tags': ['lethal weapon', 'mel', 'gibson', 'mel gibson', 'lethalweapon', 'torture', 'shipment', 'danny', 'glover']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=KkC969nZBw0',
+                'desc': 'busey in the old west',
+                'tags': ['west', 'old', 'lies', 'lyin', 'lie', 'lying', 'frontier', 'saloon', 'bar', 'gamble']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=HLCnWtsc6gA',
+                'desc': 'busey fucks this guy up in the hospital',
+                'tags': ['eye of the tiger', 'hospital', 'eyeofthetiger', 'ass', 'butt']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=p_waSAseRek',
+                'desc': 'busey slips on poop',
+                'tags': ['poop', 'shit', 'dog', 'slip', 'lawn', 'poodle', 'crap', 'turd']
+            },
+            {
+                'url': 'https://www.youtube.com/watch?v=8FnCSJqCWeg',
+                'desc': 'busey noises',
+                'tags': ['baseball', 'rookie', 'rookieoftheyear', 'rookie of the year']
             }
+
         ]
         for c in clips:
             clip = Clip(url=c['url'], desc=c['desc'], tags=c['tags'])
