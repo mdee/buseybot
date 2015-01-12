@@ -92,7 +92,6 @@ class BuseyBot(object):
             reply_clip = list(self.clips)[self.pick_random_number_in_range(limit=len(self.clips))]
         # Clip is chosen, next step is to decide between emoji or quotation response
         emoji_response = self.heads()
-        emoji_response = True
         if emoji_response:
             # Pick random emoji
             reply_text = ''
