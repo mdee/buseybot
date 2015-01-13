@@ -78,6 +78,19 @@ class BuseyBot(object):
         """"""
         return [c for c in self.clips if self.tweet_contains_tags(tweet_text, c.tags)]
 
+    def get_emoji_reply(self, tweet_len):
+        reply_text = ''
+        emojis_list = list(self.emojis)
+        add_emojis = True
+        while add_emojis:
+            emoji = random.choice(emojis_list)
+            if len(reply_text) + len(emoji.word) + 4 > tweet_len:
+                print 'Done adding emojis'
+                add_emojis = False
+            else:
+                reply_text += ':{0}: '.format(emoji.word)
+        return reply_text
+
     def craft_reply(self, status_obj, tweet_len):
         """"""
         username = status_obj.user.screen_name
@@ -94,26 +107,14 @@ class BuseyBot(object):
         emoji_response = self.heads()
         if emoji_response:
             # Pick random emoji
-            reply_text = ''
-            emojis_list = list(self.emojis)
-            add_emojis = True
-            while add_emojis:
-                emoji = random.choice(emojis_list)
-                if len(reply_text) + len(emoji.word) + 4 > tweet_len:
-                    print 'Done adding emojis'
-                    add_emojis = False
-                else:
-                    reply_text += ':{0}: '.format(emoji.word)
+            reply_text = self.get_emoji_reply(tweet_len)
         else:
             # Pick a random quotation to go along with the clip
             all_quotes = list(self.quotations)
             quotations_that_fit = filter(lambda q: len(q.text) < tweet_len, all_quotes)
             if not quotations_that_fit:
-                # Take the shortest one and truncate it
-                sorted_quotations = sorted(all_quotes, key=lambda q: len(q.text))
-                quotation = sorted_quotations[0]
-                # The quotation is too long so truncate it
-                reply_text = quotation.text[:tweet_len]
+                # Emoji time
+                reply_text = self.get_emoji_reply(tweet_len)
             else:
                 reply_text = random.choice(quotations_that_fit).text
         # Alright, you've got a clip and a bit of text, time to send it off
