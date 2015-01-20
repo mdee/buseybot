@@ -71,7 +71,7 @@ class BuseyBot(object):
 
     def tweet_contains_tags(self, tweet_text, tags):
         """"""
-        tag_regex = re.compile(r'\(' + r'|'.join(tags) + '\)', re.I)
+        tag_regex = re.compile(r'(' + r'|'.join(tags) + ')', re.I)
         return re.search(tag_regex, tweet_text) is not None
 
     def get_clips_with_tags_that_match_tweet(self, tweet_text):
@@ -121,7 +121,6 @@ class BuseyBot(object):
         if emoji_response:
             reply_text = emojize(reply_text)
         full_reply = u'{0} {1} RT @{2}: {3}'.format(reply_clip.url, reply_text, username, status_obj.text)
-        print full_reply
         # print full_reply.encode('ascii', 'ignore')
         # self.api_client.retweet(id=status_obj.id)
         self.api_client.update_status(full_reply, in_reply_to_status_id=status_obj.id)
