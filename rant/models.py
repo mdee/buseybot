@@ -3,6 +3,7 @@ import random
 import re
 
 from django.db import models
+from django.db.models import Q
 from picklefield import PickledObjectField
 from emoji import emojize
 
@@ -27,6 +28,7 @@ class Emoji(models.Model):
 class Reply(models.Model):
     """"""
     message_id = models.BigIntegerField(null=True, blank=True)
+    clip = models.ForeignKey(Clip, null=True, blank=True)
 
 
 class BuseyBot(object):
@@ -76,7 +78,12 @@ class BuseyBot(object):
 
     def get_clips_with_tags_that_match_tweet(self, tweet_text):
         """"""
-        return [c for c in self.clips if self.tweet_contains_tags(tweet_text, c.tags)]
+        if len(Reply.objects.all()):
+            most_recent_reply = Reply.objects.all().latest('id')
+            clips_to_check = Clip.objects.filter(~Q(url = most_recent_reply.clip.url))
+        else:
+            clips_to_check = self.clips
+        return [c for c in clips_to_check if self.tweet_contains_tags(tweet_text, c.tags)]
 
     def get_emoji_reply(self, tweet_len):
         reply_text = ''
@@ -125,7 +132,7 @@ class BuseyBot(object):
         # self.api_client.retweet(id=status_obj.id)
         self.api_client.update_status(full_reply, in_reply_to_status_id=status_obj.id)
         # Finally, save this as a reply
-        completed_reply = Reply(message_id=status_obj.id)
+        completed_reply = Reply(message_id=status_obj.id, clip=reply_clip)
         completed_reply.save()
 
     def reply_to_tweets(self, status_objs):
